@@ -1,3 +1,6 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/naming-convention */
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
