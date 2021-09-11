@@ -5,11 +5,29 @@
     font-size: 22px;
     font-weight: 600;
     color: $theme-color;
-    margin: 2rem 0rem 5rem 2rem;
+    margin: 2rem 0rem 4rem 2rem;
   }
 
   & .header-section {
     display: flex;
     flex-direction: column;
+  }
+
+  & .mid-section {
+    & .heading {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e67f8f;
+      margin: 3rem 0rem 1rem 2rem;
+    }
+  }
+
+  & .end-section {
+    & .heading {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e67f8f;
+      margin: 3rem 0rem 1rem 2rem;
+    }
   }
 }
