@@ -1,11 +1,15 @@
 @import '../../Styles/Variable.scss';
 
 .side-bar-section {
-  padding: 4rem 0rem;
   & .logo {
     font-size: 22px;
     font-weight: 600;
-    color: $theme-highlighter;
-    margin-left: 2rem;
+    color: $theme-color;
+    margin: 2rem 0rem 5rem 2rem;
+  }
+
+  & .header-section {
+    display: flex;
+    flex-direction: column;
   }
 }
