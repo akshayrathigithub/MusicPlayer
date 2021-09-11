@@ -67,7 +67,11 @@ module.exports = {
       {
         selector: ['variable'],
         modifiers: ['const'],
-        format: [NAMING_CONVENTION.upperCase, NAMING_CONVENTION.pascalCase],
+        format: [
+          NAMING_CONVENTION.upperCase,
+          NAMING_CONVENTION.pascalCase,
+          NAMING_CONVENTION.camelCase,
+        ],
       },
       {
         selector: ['enum'],
