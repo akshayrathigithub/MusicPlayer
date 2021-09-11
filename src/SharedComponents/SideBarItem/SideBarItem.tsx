@@ -6,9 +6,11 @@ import { SideBarItemProps } from './SideBarItem.interface';
 const SideBarItem: React.FC<SideBarItemProps> = (props): ReactElement => {
   return (
     <div
+      role="presentation"
       className={`sidebar-item-section ${
         props.iconAltName === props.activeItem ? 'active' : ''
       }`}
+      onClick={() => props.sideBarItemChanged(props.iconAltName)}
     >
       <div className="block"></div>
       <div className="icon">
