@@ -50,7 +50,7 @@ const SideBar: React.FC = () => {
         </div>
       </div>
       <div className="end-section">
-        <div className="heading">Your Library</div>
+        <div className="heading">PLAYLISTS</div>
         <div className="items">
           {BOT_SIDEBAR_ITEMS.map((item, index) => {
             return (
