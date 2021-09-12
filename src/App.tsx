@@ -1,4 +1,5 @@
 import React from 'react';
+import Content from './Components/ContentArea/Content';
 import SideBar from './Components/SideBar/SideBar';
 import './GlobalStyle.scss';
 
@@ -8,7 +9,9 @@ const App: React.FC = () => {
       <div className="side-bar">
         <SideBar />
       </div>
-      <div className="content"></div>
+      <div className="content">
+        <Content />
+      </div>
     </div>
   );
 };
