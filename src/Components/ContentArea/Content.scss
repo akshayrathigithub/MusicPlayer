@@ -1,0 +1,77 @@
+.content-wrapper {
+  width: 100%;
+  & .searchable-input {
+    width: 100%;
+  }
+
+  & .main-slider {
+    width: 90%;
+    position: relative;
+    height: 35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .third-left {
+      transform: translate3d(-24rem, 0px, 0px);
+      position: absolute;
+      width: 40%;
+      height: 80%;
+    }
+    & .third-right {
+      transform: translate3d(24rem, 0px, 0px);
+      position: absolute;
+      width: 40%;
+      height: 80%;
+    }
+
+    & .second-left {
+      transform: translate3d(-19rem, 0rem, 0rem);
+      position: absolute;
+      width: 45%;
+      height: 85%;
+      transition: all 0.85s ease-in-out;
+    }
+    & .second-right {
+      transform: translate3d(19rem, 0rem, 0rem);
+      position: absolute;
+      width: 45%;
+      height: 85%;
+      z-index: 8;
+      transition: all 0.85s ease-in-out;
+    }
+
+    & .center {
+      position: absolute;
+      transform: translate3d(0rem, 0rem, 0rem);
+      width: 70%;
+      height: 100%;
+      transition: all 0.85s ease-in-out;
+      z-index: 10;
+    }
+
+    & .center-left {
+      transform: translate3d(-19rem, 0rem, 0rem);
+      width: 45%;
+      height: 85%;
+      z-index: 8;
+    }
+
+    & .new-second-right {
+      transform: translate3d(0rem, 0rem, 0rem);
+      width: 70%;
+      height: 100%;
+      z-index: 10;
+    }
+    & .new-second-left {
+      transform: translate3d(-24rem, 0px, 0px);
+      width: 40%;
+      height: 80%;
+    }
+    & .new-second-right {
+      transform: translate3d(-24rem, 0px, 0px);
+      width: 40%;
+      height: 80%;
+    }
+  }
+}
