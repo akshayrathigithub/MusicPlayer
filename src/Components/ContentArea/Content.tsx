@@ -45,9 +45,10 @@ const Content: React.FC = () => {
       </div>
       <div className="main-slider">
         {contentState.list.map((x, index) => {
-          let reactElement: ReactElement = <></>;
+          let leftPic: ReactElement = <></>;
+          let rightPic: ReactElement = <></>;
           if (index === 0) {
-            reactElement = (
+            leftPic = (
               <div
                 className={`${classList[2]}`}
                 style={{
@@ -59,7 +60,7 @@ const Content: React.FC = () => {
             );
           } else {
             if (contentState.activeIndex - index >= 0) {
-              reactElement = (
+              leftPic = (
                 <div
                   className={
                     index > 2 ? 'third-left' : `${classList[2 + index]}`
@@ -73,7 +74,7 @@ const Content: React.FC = () => {
               );
             }
             if (contentState.activeIndex + index < contentState.totalLength) {
-              reactElement = (
+              rightPic = (
                 <div
                   className={
                     index > 2 ? 'third-right' : `${classList[2 - index]}`
@@ -87,7 +88,12 @@ const Content: React.FC = () => {
               );
             }
           }
-          return <React.Fragment key={index}>{reactElement}</React.Fragment>;
+          return (
+            <React.Fragment key={index}>
+              {leftPic}
+              {rightPic}
+            </React.Fragment>
+          );
         })}
       </div>
       <button
