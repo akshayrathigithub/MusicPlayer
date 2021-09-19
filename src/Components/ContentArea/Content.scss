@@ -17,12 +17,14 @@
       position: absolute;
       width: 40%;
       height: 80%;
+      z-index: 7;
     }
     & .third-right {
       transform: translate3d(24rem, 0px, 0px);
       position: absolute;
       width: 40%;
       height: 80%;
+      z-index: 7;
     }
 
     & .second-left {
@@ -30,6 +32,7 @@
       position: absolute;
       width: 45%;
       height: 85%;
+      z-index: 9;
       transition: all 0.85s ease-in-out;
     }
     & .second-right {
@@ -39,6 +42,7 @@
       height: 85%;
       z-index: 8;
       transition: all 0.85s ease-in-out;
+      z-index: 9;
     }
 
     & .center {
@@ -57,18 +61,41 @@
       z-index: 8;
     }
 
-    & .new-second-right {
+    & .center-right {
+      transform: translate3d(19rem, 0rem, 0rem);
+      width: 45%;
+      height: 85%;
+      z-index: 8;
+    }
+
+    & .second-right-left {
       transform: translate3d(0rem, 0rem, 0rem);
       width: 70%;
       height: 100%;
       z-index: 10;
     }
-    & .new-second-left {
+    & .second-right-right {
       transform: translate3d(-24rem, 0px, 0px);
       width: 40%;
       height: 80%;
     }
-    & .new-second-right {
+    & .third-right-left {
+      transform: translate3d(19rem, 0px, 0px);
+      width: 40%;
+      height: 80%;
+    }
+    & .third-left-right {
+      transform: translate3d(-19rem, 0px, 0px);
+      width: 40%;
+      height: 80%;
+    }
+    & .second-left-right {
+      transform: translate3d(0rem, 0rem, 0rem);
+      width: 70%;
+      height: 100%;
+      z-index: 10;
+    }
+    & .second-left-left {
       transform: translate3d(-24rem, 0px, 0px);
       width: 40%;
       height: 80%;
