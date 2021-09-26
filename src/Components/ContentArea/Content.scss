@@ -1,3 +1,5 @@
+@import '../../Styles/Variable.scss';
+
 .content-wrapper {
   width: 100%;
   & .searchable-input {
@@ -7,7 +9,7 @@
   & .main-slider {
     width: 90%;
     position: relative;
-    height: 35rem;
+    height: 32rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,6 +18,62 @@
       position: absolute;
       transition: all 0.85s ease-in-out;
       border-radius: 25px;
+    }
+  }
+
+  & .featured-list {
+    width: 100%;
+    height: 20rem;
+    & .heading {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    & .list-wrapper {
+      width: 100%;
+
+      & .card-outer {
+        width: 13rem;
+        height: 14rem;
+        border-top-left-radius: 25px;
+        border-end-end-radius: 25px;
+        padding: 15px;
+        cursor: pointer;
+        border: 2px solid transparent;
+
+        &:hover {
+          border: 2px solid $theme-color;
+        }
+
+        & .img {
+          width: 100%;
+          height: 85%;
+          background-color: red;
+          border-top-left-radius: 25px;
+          border-end-end-radius: 25px;
+        }
+
+        & .details {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          & .head {
+            margin-top: 5px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+          }
+
+          & .sub-head {
+            color: white;
+            font-size: 12px;
+            font-weight: 400;
+            margin-top: 5px;
+          }
+        }
+      }
     }
   }
 }

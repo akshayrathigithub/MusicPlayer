@@ -309,6 +309,18 @@ const Content: React.FC = () => {
       </div>
       <button onClick={() => slidePhoto(SLIDER_DIRECTION.LEFT)}>Left</button>
       <button onClick={() => slidePhoto(SLIDER_DIRECTION.RIGHT)}>Right</button>
+      <div className="featured-list">
+        <div className="heading">Weekly Top Tracks</div>
+        <div className="list-wrapper">
+          <div className="card-outer">
+            <div className="img"></div>
+            <div className="details">
+              <div className="head">Lean On</div>
+              <div className="sub-head">Ed Sheeran</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
