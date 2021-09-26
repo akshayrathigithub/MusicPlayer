@@ -23,34 +23,26 @@ interface ContentState {
 const Content: React.FC = () => {
   const initialState: ContentState = {
     list: [
-      // '#051e3e',
-      // '#59575f',
-      // '#451e3e',
-      // ' #009688',
-      // ' #35a79c',
-      // ' #54b2a9',
-      // ' #65c3ba',
-      // ' #83d0c9',
-      // ' #651e3e',
-      // ' #851e3e',
-      // '#055742',
-      // ' #9a0ea7',
-      // ' #3da4ab',
-      // ' #f6cd61',
-      // ' #fe8a71',
-      // '#2a4d69 ',
-      // ' #4b86b4',
-      // ' #adcbe3',
-      // ' #e7eff6',
-      // ' #63ace5',
-      'red',
-      'green',
-      'orange',
-      'yellow',
-      'blue',
-      'black',
-      'pink',
-      'purple',
+      '#051e3e',
+      '#59575f',
+      '#451e3e',
+      ' #009688',
+      ' #35a79c',
+      ' #54b2a9',
+      ' #65c3ba',
+      ' #83d0c9',
+      ' #651e3e',
+      ' #851e3e',
+      '#055742',
+      ' #9a0ea7',
+      ' #3da4ab',
+      ' #f6cd61',
+      ' #fe8a71',
+      '#2a4d69 ',
+      ' #4b86b4',
+      ' #adcbe3',
+      ' #e7eff6',
+      ' #63ace5',
     ],
     totalLength: 8,
     orderList: [],
@@ -59,27 +51,27 @@ const Content: React.FC = () => {
     thirdLeft: {
       transform: 'translate3d(-24rem, 0px, 0px)',
       width: '40%',
-      height: '80%',
+      height: '70%',
     },
     secondLeft: {
       transform: 'translate3d(-19rem, 0px, 0px)',
       width: '45%',
-      height: '85%',
+      height: '75%',
     },
     center: {
       transform: 'translate3d(0rem, 0px, 0px)',
       width: '70%',
-      height: '100%',
+      height: '90%',
     },
     secondRight: {
       transform: 'translate3d(19rem, 0px, 0px)',
       width: '45%',
-      height: '85%',
+      height: '75%',
     },
     thirdRight: {
       transform: 'translate3d(24rem, 0px, 0px)',
       width: '40%',
-      height: '80%',
+      height: '70%',
     },
   };
 
@@ -171,6 +163,12 @@ const Content: React.FC = () => {
   const slidePhoto = (direction: SLIDER_DIRECTION) => {
     const updatedContentRef = lodash.cloneDeep(contentRef);
     const activeIndex = updatedContentRef.current.activeIndex;
+    const beforCenter =
+      direction === SLIDER_DIRECTION.RIGHT ? activeIndex - 2 : activeIndex + 2;
+    const afterCenter =
+      direction === SLIDER_DIRECTION.RIGHT ? activeIndex - 1 : activeIndex + 1;
+    const nextAfterCenter =
+      direction === SLIDER_DIRECTION.RIGHT ? activeIndex + 1 : activeIndex - 1;
     type updatedValues = {
       transform: string;
       height: string;
@@ -203,8 +201,7 @@ const Content: React.FC = () => {
           divIndex
         ).toString();
       }
-      if (currIndex === activeIndex - 2) {
-        console.log(divTag, 'kjjk');
+      if (currIndex === beforCenter) {
         updatedElementStyleValues = {
           ...updatedElementStyleValues,
           transform:
@@ -221,7 +218,7 @@ const Content: React.FC = () => {
               : translateValues.secondRight.width,
           zIndex: '98',
         };
-      } else if (currIndex === activeIndex - 1) {
+      } else if (currIndex === afterCenter) {
         updatedElementStyleValues = {
           ...updatedElementStyleValues,
           transform: translateValues.center.transform,
@@ -246,7 +243,7 @@ const Content: React.FC = () => {
               : translateValues.secondLeft.width,
           zIndex: '98',
         };
-      } else if (currIndex === activeIndex + 1) {
+      } else if (currIndex === nextAfterCenter) {
         updatedElementStyleValues = {
           ...updatedElementStyleValues,
           transform:
@@ -265,12 +262,10 @@ const Content: React.FC = () => {
         };
       }
       if (divTag) {
-        console.log(divTag.style.backgroundColor, 'before');
         divTag.style.transform = updatedElementStyleValues.transform;
         divTag.style.height = updatedElementStyleValues.height;
         divTag.style.width = updatedElementStyleValues.width;
         divTag.style.zIndex = updatedElementStyleValues.zIndex;
-        // console.log(divTag.style.zIndex, divTag.style.backgroundColor, 'after');
       }
       updatedContentRef.current.elementInfo[currIndex].element = divTag;
     }
