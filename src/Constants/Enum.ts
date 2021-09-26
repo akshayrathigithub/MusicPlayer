@@ -14,3 +14,8 @@ export const enum SIDEBAR_ITEMS {
   ROMANTIC_TOP = 'romanticTop',
   ENGLISH_TOP = 'englishTop',
 }
+
+export const enum SLIDER_DIRECTION {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
