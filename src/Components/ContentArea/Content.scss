@@ -12,37 +12,10 @@
     justify-content: center;
     align-items: center;
 
-    & .third-left {
+    .slide-leaf {
       position: absolute;
-      width: 40%;
-      height: 80%;
       transition: all 0.85s ease-in-out;
-    }
-    & .third-right {
-      position: absolute;
-      width: 40%;
-      height: 80%;
-      transition: all 0.85s ease-in-out;
-    }
-
-    & .second-left {
-      position: absolute;
-      width: 45%;
-      height: 85%;
-      transition: all 0.85s ease-in-out;
-    }
-    & .second-right {
-      position: absolute;
-      width: 45%;
-      height: 85%;
-      transition: all 0.85s ease-in-out;
-    }
-
-    & .center {
-      position: absolute;
-      width: 70%;
-      height: 100%;
-      transition: all 0.85s ease-in-out;
+      border-radius: 10px;
     }
   }
 }
