@@ -13,6 +13,10 @@ export interface ContentState {
     width: string;
     height: string;
   }[];
+  featuredList: {
+    activeIndex: number;
+    songsList: string[];
+  };
 }
 
 export interface ElementStyles {
