@@ -3,36 +3,23 @@ import { SLIDER_DIRECTION } from '../../Constants/Enum';
 import SearchInput from '../../SharedComponents/SearchInput/SearchInput';
 import './Content.scss';
 import lodash from 'lodash';
+import { SLIDER_TRANSLATE_VALUES as translateValues } from '../../Constants/Constant';
+import {
+  ContentRefType,
+  ContentState,
+  ElementStyles,
+} from './Content.interface';
 
-type RefType = {
-  activeIndex: number;
-  elementInfo: { translateValue: string; element: HTMLDivElement | null }[];
-};
-
-interface ContentState {
-  list: string[];
-  totalLength: number;
-  orderList: {
-    zIndex: string;
-    bgColor: string;
-    translateValue: string;
-    width: string;
-    height: string;
-  }[];
-}
 const Content: React.FC = () => {
   const initialState: ContentState = {
     list: [
       '#051e3e',
+      ' #35a79c',
       '#59575f',
+      ' #83d0c9',
       '#451e3e',
       ' #009688',
-      ' #35a79c',
-      ' #54b2a9',
-      ' #65c3ba',
-      ' #83d0c9',
       ' #651e3e',
-      ' #851e3e',
       '#055742',
       ' #9a0ea7',
       ' #3da4ab',
@@ -40,49 +27,29 @@ const Content: React.FC = () => {
       ' #fe8a71',
       '#2a4d69 ',
       ' #4b86b4',
+      ' #54b2a9',
       ' #adcbe3',
+      ' #65c3ba',
       ' #e7eff6',
       ' #63ace5',
+      ' #851e3e',
     ],
     totalLength: 8,
-    orderList: [],
-  };
-  const translateValues = {
-    thirdLeft: {
-      transform: 'translate3d(-24rem, 0px, 0px)',
-      width: '40%',
-      height: '70%',
-    },
-    secondLeft: {
-      transform: 'translate3d(-19rem, 0px, 0px)',
-      width: '45%',
-      height: '75%',
-    },
-    center: {
-      transform: 'translate3d(0rem, 0px, 0px)',
-      width: '70%',
-      height: '90%',
-    },
-    secondRight: {
-      transform: 'translate3d(19rem, 0px, 0px)',
-      width: '45%',
-      height: '75%',
-    },
-    thirdRight: {
-      transform: 'translate3d(24rem, 0px, 0px)',
-      width: '40%',
-      height: '70%',
-    },
+    leafList: [],
   };
 
   const [contentState, setContentState] = useState<ContentState>(initialState);
-  const contentRef = useRef<RefType>({
+  const contentRef = useRef<ContentRefType>({
     activeIndex: 3,
-    elementInfo: [{ translateValue: '', element: null }],
+    elementList: [],
   });
   useEffect(() => {
     const updatedState = contentState;
     let listTotalLength = 0;
+    /**
+     * populating slide leaf with center leaf as active
+     * middle index is active by default
+     */
     const isEvenLengthList = updatedState.list.length % 2 === 0;
     if (isEvenLengthList) {
       listTotalLength = updatedState.list.length + 1;
@@ -95,7 +62,11 @@ const Content: React.FC = () => {
     for (let i = middleIndex; i < listTotalLength; i++) {
       const zIndex = (listTotalLength - i).toString();
       if (i === middleIndex) {
-        updatedState.orderList.push({
+        /**
+         * central leaf
+         */
+
+        updatedState.leafList.push({
           zIndex: zIndex,
           bgColor: updatedState.list[i],
           translateValue: translateValues.center.transform,
@@ -120,7 +91,12 @@ const Content: React.FC = () => {
           width = translateValues.thirdLeft.width;
           height = translateValues.thirdLeft.height;
         }
-        updatedState.orderList.unshift({
+
+        /**
+         * push to front
+         */
+
+        updatedState.leafList.unshift({
           zIndex: zIndex,
           bgColor: updatedState.list[listTotalLength - 1 - i],
           translateValue: translateValue,
@@ -129,6 +105,10 @@ const Content: React.FC = () => {
         });
 
         if (isEvenLengthList && i === listTotalLength - 1) {
+          /**
+           * when slides count is even,
+           * then we need to skip one leaf
+           */
           break;
         }
 
@@ -145,7 +125,12 @@ const Content: React.FC = () => {
           width = translateValues.thirdRight.width;
           height = translateValues.thirdRight.height;
         }
-        updatedState.orderList.push({
+
+        /**
+         * push to end
+         */
+
+        updatedState.leafList.push({
           zIndex: zIndex,
           bgColor: updatedState.list[i],
           translateValue: translateValue,
@@ -161,27 +146,38 @@ const Content: React.FC = () => {
   }, []);
 
   const slidePhoto = (direction: SLIDER_DIRECTION) => {
-    const updatedContentRef = lodash.cloneDeep(contentRef);
+    /**
+     * changing translate3d value based on click direction of slider
+     */
+
+    const updatedContentRef = lodash.cloneDeep(contentRef); // deepClone
     const activeIndex = updatedContentRef.current.activeIndex;
+
+    /**
+     * for right direction access array from starting and
+     * for left direction access array from end
+     */
+
     const beforCenter =
       direction === SLIDER_DIRECTION.RIGHT ? activeIndex - 2 : activeIndex + 2;
     const afterCenter =
       direction === SLIDER_DIRECTION.RIGHT ? activeIndex - 1 : activeIndex + 1;
     const nextAfterCenter =
       direction === SLIDER_DIRECTION.RIGHT ? activeIndex + 1 : activeIndex - 1;
-    type updatedValues = {
-      transform: string;
-      height: string;
-      width: string;
-      zIndex: string;
-    };
+
+    /**
+     * changing width and zIndex of leafs
+     */
+
     for (let divIndex = 0; divIndex < contentState.totalLength; divIndex++) {
       const currIndex =
         direction === SLIDER_DIRECTION.RIGHT
           ? divIndex
           : contentState.totalLength - 1 - divIndex;
-      const divTag = updatedContentRef.current.elementInfo[currIndex].element;
-      let updatedElementStyleValues: updatedValues = {
+
+      const divTag = updatedContentRef.current.elementList[currIndex];
+
+      let updatedElementStyleValues: ElementStyles = {
         transform: divTag ? divTag.style.transform : '',
         height: divTag ? divTag.style.height : '',
         width: divTag ? divTag.style.width : '',
@@ -201,6 +197,7 @@ const Content: React.FC = () => {
           divIndex
         ).toString();
       }
+
       if (currIndex === beforCenter) {
         updatedElementStyleValues = {
           ...updatedElementStyleValues,
@@ -261,19 +258,26 @@ const Content: React.FC = () => {
           zIndex: '96',
         };
       }
+
+      /**
+       * updating styles of leaf's
+       */
+
       if (divTag) {
         divTag.style.transform = updatedElementStyleValues.transform;
         divTag.style.height = updatedElementStyleValues.height;
         divTag.style.width = updatedElementStyleValues.width;
         divTag.style.zIndex = updatedElementStyleValues.zIndex;
       }
-      updatedContentRef.current.elementInfo[currIndex].element = divTag;
+      updatedContentRef.current.elementList[currIndex] = divTag;
     }
+
     if (direction === SLIDER_DIRECTION.LEFT) {
       updatedContentRef.current.activeIndex += 1;
     } else {
       updatedContentRef.current.activeIndex -= 1;
     }
+
     contentRef.current = lodash.cloneDeep(updatedContentRef.current);
   };
 
@@ -283,7 +287,7 @@ const Content: React.FC = () => {
         <SearchInput />
       </div>
       <div className="main-slider">
-        {contentState.orderList.map((x, index) => {
+        {contentState.leafList.map((x, index) => {
           return (
             <div
               className="slide-leaf"
@@ -294,11 +298,9 @@ const Content: React.FC = () => {
                 width: x.width,
                 height: x.height,
               }}
-              ref={(ele) => {
-                contentRef.current.elementInfo[index] = {
-                  translateValue: x.translateValue,
-                  element: ele,
-                };
+              ref={(divInfo) => {
+                contentRef.current.elementList[index] =
+                  divInfo as HTMLDivElement;
               }}
               key={index}
             ></div>
