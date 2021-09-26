@@ -36,6 +36,23 @@ const Content: React.FC = () => {
     ],
     totalLength: 8,
     leafList: [],
+    featuredList: {
+      activeIndex: 5,
+      songsList: [
+        '#051e3e',
+        ' #35a79c',
+        '#59575f',
+        ' #83d0c9',
+        '#451e3e',
+        ' #009688',
+        ' #651e3e',
+        // '#055742',
+        // ' #9a0ea7',
+        // ' #3da4ab',
+        // ' #f6cd61',
+        // ' #fe8a71',
+      ],
+    },
   };
 
   const [contentState, setContentState] = useState<ContentState>(initialState);
@@ -312,13 +329,17 @@ const Content: React.FC = () => {
       <div className="featured-list">
         <div className="heading">Weekly Top Tracks</div>
         <div className="list-wrapper">
-          <div className="card-outer">
-            <div className="img"></div>
-            <div className="details">
-              <div className="head">Lean On</div>
-              <div className="sub-head">Ed Sheeran</div>
-            </div>
-          </div>
+          {contentState.featuredList.songsList.map((song, index) => {
+            return (
+              <div className="card-outer" key={index}>
+                <div className="img"></div>
+                <div className="details">
+                  <div className="head">Lean On</div>
+                  <div className="sub-head">Ed Sheeran</div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
