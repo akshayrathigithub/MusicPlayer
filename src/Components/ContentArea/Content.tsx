@@ -1,121 +1,317 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { SLIDER_DIRECTION } from '../../Constants/Enum';
 import SearchInput from '../../SharedComponents/SearchInput/SearchInput';
 import './Content.scss';
+import lodash from 'lodash';
 
+type RefType = {
+  activeIndex: number;
+  elementInfo: { translateValue: string; element: HTMLDivElement | null }[];
+};
+
+interface ContentState {
+  list: string[];
+  totalLength: number;
+  orderList: {
+    zIndex: string;
+    bgColor: string;
+    translateValue: string;
+    width: string;
+    height: string;
+  }[];
+}
 const Content: React.FC = () => {
-  const initialState = {
+  const initialState: ContentState = {
     list: [
-      'yellow',
-      'green',
-      'palevioletred',
-      'purple',
-      'orange',
+      // '#051e3e',
+      // '#59575f',
+      // '#451e3e',
+      // ' #009688',
+      // ' #35a79c',
+      // ' #54b2a9',
+      // ' #65c3ba',
+      // ' #83d0c9',
+      // ' #651e3e',
+      // ' #851e3e',
+      // '#055742',
+      // ' #9a0ea7',
+      // ' #3da4ab',
+      // ' #f6cd61',
+      // ' #fe8a71',
+      // '#2a4d69 ',
+      // ' #4b86b4',
+      // ' #adcbe3',
+      // ' #e7eff6',
+      // ' #63ace5',
       'red',
+      'green',
+      'orange',
+      'yellow',
       'blue',
+      'black',
       'pink',
-      'white',
+      'purple',
     ],
-    activeIndex: 4,
-    middleIndex: 5,
     totalLength: 8,
+    orderList: [],
   };
-  const classList: string[] = [
-    'third-right',
-    'second-right',
-    'center',
-    'second-left',
-    'third-left',
-  ];
-  const [contentState, setContentState] = useState(initialState);
+  const translateValues = {
+    thirdLeft: {
+      transform: 'translate3d(-24rem, 0px, 0px)',
+      width: '40%',
+      height: '80%',
+    },
+    secondLeft: {
+      transform: 'translate3d(-19rem, 0px, 0px)',
+      width: '45%',
+      height: '85%',
+    },
+    center: {
+      transform: 'translate3d(0rem, 0px, 0px)',
+      width: '70%',
+      height: '100%',
+    },
+    secondRight: {
+      transform: 'translate3d(19rem, 0px, 0px)',
+      width: '45%',
+      height: '85%',
+    },
+    thirdRight: {
+      transform: 'translate3d(24rem, 0px, 0px)',
+      width: '40%',
+      height: '80%',
+    },
+  };
+
+  const [contentState, setContentState] = useState<ContentState>(initialState);
+  const contentRef = useRef<RefType>({
+    activeIndex: 3,
+    elementInfo: [{ translateValue: '', element: null }],
+  });
   useEffect(() => {
     const updatedState = contentState;
-    const middleIndex = Number(updatedState.list.length / 2 - 0.5);
-    updatedState.middleIndex = middleIndex;
-    updatedState.activeIndex = middleIndex;
+    let listTotalLength = 0;
+    const isEvenLengthList = updatedState.list.length % 2 === 0;
+    if (isEvenLengthList) {
+      listTotalLength = updatedState.list.length + 1;
+    } else {
+      listTotalLength = updatedState.list.length;
+    }
+    const middleIndex = Math.round(listTotalLength / 2 - 0.5);
     updatedState.totalLength = updatedState.list.length;
+    contentRef.current.activeIndex = middleIndex;
+    for (let i = middleIndex; i < listTotalLength; i++) {
+      const zIndex = (listTotalLength - i).toString();
+      if (i === middleIndex) {
+        updatedState.orderList.push({
+          zIndex: zIndex,
+          bgColor: updatedState.list[i],
+          translateValue: translateValues.center.transform,
+          width: translateValues.center.width,
+          height: translateValues.center.height,
+        });
+      } else {
+        let translateValue = '';
+        let width = '';
+        let height = '';
+
+        if (i === middleIndex + 1) {
+          translateValue = translateValues.secondLeft.transform;
+          width = translateValues.secondLeft.width;
+          height = translateValues.secondLeft.height;
+        } else if (i === middleIndex + 2) {
+          translateValue = translateValues.thirdLeft.transform;
+          width = translateValues.thirdLeft.width;
+          height = translateValues.thirdLeft.height;
+        } else {
+          translateValue = translateValues.thirdLeft.transform;
+          width = translateValues.thirdLeft.width;
+          height = translateValues.thirdLeft.height;
+        }
+        updatedState.orderList.unshift({
+          zIndex: zIndex,
+          bgColor: updatedState.list[listTotalLength - 1 - i],
+          translateValue: translateValue,
+          width: width,
+          height: height,
+        });
+
+        if (isEvenLengthList && i === listTotalLength - 1) {
+          break;
+        }
+
+        if (i === middleIndex + 1) {
+          translateValue = translateValues.secondRight.transform;
+          width = translateValues.secondRight.width;
+          height = translateValues.secondRight.height;
+        } else if (i === middleIndex + 2) {
+          translateValue = translateValues.thirdRight.transform;
+          width = translateValues.thirdRight.width;
+          height = translateValues.thirdRight.height;
+        } else {
+          translateValue = translateValues.thirdRight.transform;
+          width = translateValues.thirdRight.width;
+          height = translateValues.thirdRight.height;
+        }
+        updatedState.orderList.push({
+          zIndex: zIndex,
+          bgColor: updatedState.list[i],
+          translateValue: translateValue,
+          width: width,
+          height: height,
+        });
+      }
+    }
     setContentState({ ...updatedState });
     return () => {
       // cleanup
     };
   }, []);
+
+  const slidePhoto = (direction: SLIDER_DIRECTION) => {
+    const updatedContentRef = lodash.cloneDeep(contentRef);
+    const activeIndex = updatedContentRef.current.activeIndex;
+    type updatedValues = {
+      transform: string;
+      height: string;
+      width: string;
+      zIndex: string;
+    };
+    for (let divIndex = 0; divIndex < contentState.totalLength; divIndex++) {
+      const currIndex =
+        direction === SLIDER_DIRECTION.RIGHT
+          ? divIndex
+          : contentState.totalLength - 1 - divIndex;
+      const divTag = updatedContentRef.current.elementInfo[currIndex].element;
+      let updatedElementStyleValues: updatedValues = {
+        transform: divTag ? divTag.style.transform : '',
+        height: divTag ? divTag.style.height : '',
+        width: divTag ? divTag.style.width : '',
+        zIndex: divTag ? divTag.style.zIndex : '',
+      };
+
+      if (divIndex > activeIndex) {
+        updatedElementStyleValues.zIndex = (
+          contentState.totalLength +
+          activeIndex -
+          divIndex
+        ).toString();
+      } else {
+        updatedElementStyleValues.zIndex = (
+          contentState.totalLength -
+          activeIndex +
+          divIndex
+        ).toString();
+      }
+      if (currIndex === activeIndex - 2) {
+        console.log(divTag, 'kjjk');
+        updatedElementStyleValues = {
+          ...updatedElementStyleValues,
+          transform:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.secondLeft.transform
+              : translateValues.secondRight.transform,
+          height:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.secondLeft.height
+              : translateValues.secondRight.height,
+          width:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.secondLeft.width
+              : translateValues.secondRight.width,
+          zIndex: '98',
+        };
+      } else if (currIndex === activeIndex - 1) {
+        updatedElementStyleValues = {
+          ...updatedElementStyleValues,
+          transform: translateValues.center.transform,
+          height: translateValues.center.height,
+          width: translateValues.center.width,
+          zIndex: '100',
+        };
+      } else if (currIndex === activeIndex) {
+        updatedElementStyleValues = {
+          ...updatedElementStyleValues,
+          transform:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.secondRight.transform
+              : translateValues.secondLeft.transform,
+          height:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.secondRight.height
+              : translateValues.secondLeft.height,
+          width:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.secondRight.width
+              : translateValues.secondLeft.width,
+          zIndex: '98',
+        };
+      } else if (currIndex === activeIndex + 1) {
+        updatedElementStyleValues = {
+          ...updatedElementStyleValues,
+          transform:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.thirdRight.transform
+              : translateValues.thirdLeft.transform,
+          height:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.thirdRight.height
+              : translateValues.thirdLeft.height,
+          width:
+            direction === SLIDER_DIRECTION.RIGHT
+              ? translateValues.thirdRight.width
+              : translateValues.thirdLeft.width,
+          zIndex: '96',
+        };
+      }
+      if (divTag) {
+        console.log(divTag.style.backgroundColor, 'before');
+        divTag.style.transform = updatedElementStyleValues.transform;
+        divTag.style.height = updatedElementStyleValues.height;
+        divTag.style.width = updatedElementStyleValues.width;
+        divTag.style.zIndex = updatedElementStyleValues.zIndex;
+        // console.log(divTag.style.zIndex, divTag.style.backgroundColor, 'after');
+      }
+      updatedContentRef.current.elementInfo[currIndex].element = divTag;
+    }
+    if (direction === SLIDER_DIRECTION.LEFT) {
+      updatedContentRef.current.activeIndex += 1;
+    } else {
+      updatedContentRef.current.activeIndex -= 1;
+    }
+    contentRef.current = lodash.cloneDeep(updatedContentRef.current);
+  };
+
   return (
     <div className="content-wrapper">
       <div className="searchable-input">
         <SearchInput />
       </div>
       <div className="main-slider">
-        {contentState.list.map((x, index) => {
-          let leftPic: ReactElement = <></>;
-          let rightPic: ReactElement = <></>;
-          if (index === 0) {
-            leftPic = (
-              <div
-                className={`${classList[2]}`}
-                style={{
-                  backgroundColor: `${
-                    contentState.list[contentState.activeIndex]
-                  }`,
-                }}
-              ></div>
-            );
-          } else {
-            if (contentState.activeIndex - index >= 0) {
-              leftPic = (
-                <div
-                  className={
-                    index > 2 ? 'third-left' : `${classList[2 + index]}`
-                  }
-                  style={{
-                    backgroundColor: `${
-                      contentState.list[contentState.activeIndex + index]
-                    }`,
-                  }}
-                ></div>
-              );
-            }
-            if (contentState.activeIndex + index < contentState.totalLength) {
-              rightPic = (
-                <div
-                  className={
-                    index > 2 ? 'third-right' : `${classList[2 - index]}`
-                  }
-                  style={{
-                    backgroundColor: `${
-                      contentState.list[contentState.activeIndex - index]
-                    }`,
-                  }}
-                ></div>
-              );
-            }
-          }
+        {contentState.orderList.map((x, index) => {
           return (
-            <React.Fragment key={index}>
-              {leftPic}
-              {rightPic}
-            </React.Fragment>
+            <div
+              className="slide-leaf"
+              style={{
+                backgroundColor: `${x.bgColor}`,
+                transform: `${x.translateValue}`,
+                zIndex: Number(x.zIndex),
+                width: x.width,
+                height: x.height,
+              }}
+              ref={(ele) => {
+                contentRef.current.elementInfo[index] = {
+                  translateValue: x.translateValue,
+                  element: ele,
+                };
+              }}
+              key={index}
+            ></div>
           );
         })}
       </div>
-      <button
-        onClick={() =>
-          setContentState({
-            ...contentState,
-            activeIndex: contentState.activeIndex - 1,
-          })
-        }
-      >
-        Left
-      </button>
-      <button
-        onClick={() =>
-          setContentState({
-            ...contentState,
-            activeIndex: contentState.activeIndex + 1,
-          })
-        }
-      >
-        Right
-      </button>
+      <button onClick={() => slidePhoto(SLIDER_DIRECTION.LEFT)}>Left</button>
+      <button onClick={() => slidePhoto(SLIDER_DIRECTION.RIGHT)}>Right</button>
     </div>
   );
 };
