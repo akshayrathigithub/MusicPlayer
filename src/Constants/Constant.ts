@@ -9,7 +9,7 @@ export const SLIDER_TRANSLATE_VALUES = {
     height: '70%',
   },
   secondLeft: {
-    transform: 'translate3d(-19rem, 0px, 0px)',
+    transform: 'translate3d(-17rem, 0px, 0px)',
     width: '45%',
     height: '75%',
   },
@@ -19,7 +19,7 @@ export const SLIDER_TRANSLATE_VALUES = {
     height: '90%',
   },
   secondRight: {
-    transform: 'translate3d(19rem, 0px, 0px)',
+    transform: 'translate3d(17rem, 0px, 0px)',
     width: '45%',
     height: '75%',
   },
