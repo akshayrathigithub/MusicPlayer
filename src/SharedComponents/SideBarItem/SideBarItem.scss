@@ -1,5 +1,9 @@
 @import '../../Styles/Variable.scss';
 
+.link {
+  text-decoration: none;
+  list-style: none;
+}
 .sidebar-item-section {
   display: flex;
   width: 85%;

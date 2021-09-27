@@ -26,6 +26,7 @@ const SideBar: React.FC = () => {
                 setSideBarState({ activeItem: action });
               }}
               key={index}
+              pageRoute={item.route}
             />
           );
         })}
@@ -44,6 +45,7 @@ const SideBar: React.FC = () => {
                   setSideBarState({ activeItem: action });
                 }}
                 key={index}
+                pageRoute={item.route}
               />
             );
           })}
@@ -63,6 +65,7 @@ const SideBar: React.FC = () => {
                   setSideBarState({ activeItem: action });
                 }}
                 key={index}
+                pageRoute={item.route}
               />
             );
           })}
