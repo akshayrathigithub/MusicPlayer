@@ -1,14 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { SLIDER_DIRECTION } from '../../Constants/Enum';
-import SearchInput from '../../SharedComponents/SearchInput/SearchInput';
-import './Content.scss';
+import './Home.scss';
 import lodash from 'lodash';
 import { SLIDER_TRANSLATE_VALUES as translateValues } from '../../Constants/Constant';
-import {
-  ContentRefType,
-  ContentState,
-  ElementStyles,
-} from './Content.interface';
+import { ContentRefType, ContentState, ElementStyles } from './Home.interface';
 
 const Content: React.FC = () => {
   const initialState: ContentState = {
@@ -300,9 +295,6 @@ const Content: React.FC = () => {
 
   return (
     <div className="content-wrapper">
-      <div className="searchable-input">
-        <SearchInput />
-      </div>
       <div className="main-slider">
         {contentState.leafList.map((x, index) => {
           return (
