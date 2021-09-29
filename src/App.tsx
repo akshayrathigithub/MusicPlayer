@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from './Components/Home/Home';
 import SideBar from './Components/SideBar/SideBar';
 import './GlobalStyle.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './Components/NavBar/NavBar';
+import Browse from './Components/Browse/Browse';
+import { PAGE_ROUTES } from './Constants/PageRoute';
 
 const App: React.FC = () => {
+  useEffect(() => {
+    return () => {
+      // cleanup
+    };
+  }, []);
   return (
     <Router>
       <div className="app">
@@ -15,8 +22,11 @@ const App: React.FC = () => {
         <div className="content">
           <NavBar />
           <Switch>
-            <Route exact path="/">
+            <Route exact path={PAGE_ROUTES.HOME}>
               <Home />
+            </Route>
+            <Route exact path={PAGE_ROUTES.BROWSE}>
+              <Browse />
             </Route>
           </Switch>
         </div>
