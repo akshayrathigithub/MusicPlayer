@@ -37,6 +37,25 @@ const Browse: React.FC = () => {
           })}
         </div>
       </div>
+      <div className="top-songs-section">
+        <div className="top-songs">Tops Songs</div>
+        <div className="text active">Today</div>
+        <div className="text">Week</div>
+        <div className="text">Month</div>
+        <div className="text">Year</div>
+      </div>
+
+      <div className="songs-list">
+        <div className="head">
+          <div className="hash">#</div>
+          <div className="artist-track">Track/Artist</div>
+          <div className="album">Album</div>
+          <div className="time">Time</div>
+          <div className="plays">Plays</div>
+          <div className="add">Add</div>
+        </div>
+        <div className="song-details"></div>
+      </div>
     </div>
   );
 };
