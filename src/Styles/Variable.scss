@@ -1,8 +1,277 @@
 $side-bar-bg: #13192c;
 $white-color: #ffffff;
+$black-color: #000;
 $content-bg: #181e30;
 $theme-color: #3cba6d;
 $SVG-GREEN-COLOR: invert(60%) sepia(51%) saturate(506%) hue-rotate(91deg)
   brightness(91%) contrast(92%);
 $SVG-WHITE-COLOR: invert(100%) sepia(100%) saturate(0%) hue-rotate(241deg)
   brightness(103%) contrast(103%);
+
+// font-size
+$font-size-one: 6px;
+$font-size-two: 8px;
+$font-size-three: 10px;
+$font-size-four: 12px;
+$font-size-five: 14px;
+$font-size-six: 16px;
+$font-size-seven: 18px;
+$font-size-eight: 20px;
+$font-size-nine: 22px;
+$font-size-ten: 24px;
+$font-size-eleven: 26px;
+$font-size-twelve: 28px;
+$font-size-thirteen: 30px;
+$font-size-fourteen: 32px;
+$font-size-fifteen: 34px;
+$font-size-sixteen: 36px;
+$font-size-seventeen: 38px;
+$font-size-eighteen: 40px;
+$font-size-ninteen: 42px;
+$font-size-twenty: 44px;
+
+// line-height
+$font-line-height-one: 12px;
+$font-line-height-two: 14px;
+$font-line-height-three: 16px;
+$font-line-height-four: 19px;
+$font-line-height-four-1: 21px;
+$font-line-height-five: 24px;
+$font-line-height-six: 28px;
+$font-line-height-seven: 30px;
+$font-line-height-eight: 35px;
+
+// letter-spacing
+$font-letter-spacing-one: -0.01em;
+$font-letter-spacing-two: 0.25px;
+$font-letter-spacing-three: 0.15px;
+
+// font-weight
+$font-weight-thin: 100;
+$font-weight-extralight: 200;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+$font-weight-black: 900;
+
+%font {
+  color: $black-color;
+  letter-spacing: $font-letter-spacing-one;
+  font-style: $font-weight-normal;
+}
+
+%font12r {
+  font-weight: $font-weight-normal;
+  font-size: $font-size-four;
+  line-height: $font-line-height-two;
+
+  @extend %font;
+}
+
+%font12m {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-four;
+  line-height: $font-line-height-two;
+
+  @extend %font;
+}
+
+%font12b {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-four;
+  line-height: $font-line-height-two;
+
+  @extend %font;
+}
+
+%font14r {
+  font-weight: $font-weight-normal;
+  font-size: $font-size-five;
+  line-height: $font-line-height-three;
+
+  @extend %font;
+}
+
+%font14m {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-five;
+  line-height: $font-line-height-three;
+
+  @extend %font;
+}
+
+%font14b {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-five;
+  line-height: $font-line-height-three;
+
+  @extend %font;
+}
+
+%font16s {
+  letter-spacing: $font-letter-spacing-three;
+  font-weight: $font-weight-light;
+  font-size: $font-size-six;
+  line-height: $font-line-height-five;
+
+  @extend %font;
+}
+
+%font16r {
+  letter-spacing: $font-letter-spacing-three;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-six;
+  line-height: $font-line-height-four;
+
+  @extend %font;
+}
+
+%font16m {
+  letter-spacing: $font-letter-spacing-three;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-six;
+  line-height: $font-line-height-four;
+
+  @extend %font;
+}
+
+%font16b {
+  letter-spacing: $font-letter-spacing-three;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-six;
+  line-height: $font-line-height-four;
+
+  @extend %font;
+}
+
+%font18r {
+  letter-spacing: $font-letter-spacing-two;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-seven;
+  line-height: $font-line-height-four-1;
+
+  @extend %font;
+}
+
+%font18m {
+  letter-spacing: $font-letter-spacing-two;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-seven;
+  line-height: $font-line-height-four-1;
+
+  @extend %font;
+}
+
+%font18b {
+  letter-spacing: $font-letter-spacing-two;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-seven;
+  line-height: $font-line-height-four-1;
+
+  @extend %font;
+}
+
+%font20m {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-eight;
+  line-height: $font-line-height-five;
+
+  @extend %font;
+}
+
+%font20r {
+  font-weight: $font-weight-normal;
+  font-size: $font-size-eight;
+  line-height: $font-line-height-five;
+
+  @extend %font;
+}
+
+%font26m {
+  font-weight: $font-weight-medium;
+  font-size: 26px;
+  line-height: 30px;
+
+  @extend %font;
+}
+
+%font24r {
+  font-weight: $font-weight-normal;
+  font-size: $font-size-ten;
+  line-height: 20px;
+
+  @extend %font;
+}
+
+%font24m {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-ten;
+  line-height: 20px;
+
+  @extend %font;
+}
+
+%font24b {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-ten;
+  line-height: 31px;
+
+  @extend %font;
+}
+
+%font26r {
+  letter-spacing: $font-letter-spacing-one;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-eleven;
+  line-height: $font-line-height-seven;
+
+  @extend %font;
+}
+
+%font28r {
+  letter-spacing: $font-letter-spacing-one;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-twelve;
+  line-height: $font-line-height-six;
+
+  @extend %font;
+}
+
+%font30m {
+  letter-spacing: $font-letter-spacing-one;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-thirteen;
+  line-height: $font-line-height-eight;
+
+  @extend %font;
+}
+
+%font30b {
+  letter-spacing: $font-letter-spacing-one;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-thirteen;
+  line-height: $font-line-height-eight;
+
+  @extend %font;
+}
+
+%font36r {
+  letter-spacing: $font-letter-spacing-one;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sixteen;
+  line-height: $font-line-height-eight;
+
+  @extend %font;
+}
+
+%font36m {
+  letter-spacing: $font-letter-spacing-one;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sixteen;
+  line-height: $font-line-height-eight;
+
+  @extend %font;
+}
