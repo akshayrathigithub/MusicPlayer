@@ -47,6 +47,7 @@ const Browse: React.FC = () => {
 
       <div className="songs-list">
         <div className="head">
+          <div className="song-btn"></div>
           <div className="hash">#</div>
           <div className="artist-track">Track/Artist</div>
           <div className="album">Album</div>
@@ -54,7 +55,21 @@ const Browse: React.FC = () => {
           <div className="plays">Plays</div>
           <div className="add">Add</div>
         </div>
-        <div className="song-details"></div>
+        <div className="song-details">
+          <div className="song-btn"></div>
+          <div className="hash">01</div>
+          <div className="artist-track">
+            <div className="img"></div>
+            <div className="details">
+              <div className="song-name">Without Me</div>
+              <div className="song-artist">Connor Franklin</div>
+            </div>
+          </div>
+          <div className="album">Shallow</div>
+          <div className="time">4:30</div>
+          <div className="plays">25,102</div>
+          <div className="add"></div>
+        </div>
       </div>
     </div>
   );
