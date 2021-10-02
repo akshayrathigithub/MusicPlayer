@@ -97,33 +97,60 @@
     width: 50%;
     margin-top: 25px;
 
-    & .head {
+    & .head,
+    & .song-details {
       display: flex;
       width: 100%;
       justify-content: space-evenly;
 
+      & .song-btn {
+        width: 5%;
+        display: flex;
+        align-items: center;
+      }
+
       & .hash {
         width: 5%;
+        display: flex;
+        align-items: center;
       }
 
       & .artist-track {
         width: 25%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        & .img {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          background-color: red;
+        }
       }
 
       & .album {
         width: 15%;
+        display: flex;
+        align-items: center;
       }
 
       & .time {
         width: 5%;
+        display: flex;
+        align-items: center;
       }
 
       & .plays {
         width: 10%;
+        display: flex;
+        align-items: center;
       }
 
       & .add {
         width: 8%;
+        display: flex;
+        align-items: center;
       }
     }
   }
