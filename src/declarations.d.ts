@@ -9,3 +9,5 @@ declare module '*.svg' {
   const SRC: string;
   export default SRC;
 }
+
+declare module '*.jpg';
