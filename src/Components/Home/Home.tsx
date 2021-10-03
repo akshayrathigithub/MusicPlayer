@@ -4,49 +4,19 @@ import './Home.scss';
 import lodash from 'lodash';
 import { SLIDER_TRANSLATE_VALUES as translateValues } from '../../Constants/Constant';
 import { ContentRefType, ContentState, ElementStyles } from './Home.interface';
+import pic from '../../Assets/Images/test-pic.jpg';
+import pic_1 from '../../Assets/Images/test-pic-1.jpg';
+import pic_2 from '../../Assets/Images/test-pic-2.jpg';
+import pic_3 from '../../Assets/Images/test-pic-3.jpg';
 
 const Content: React.FC = () => {
   const initialState: ContentState = {
-    list: [
-      '#051e3e',
-      ' #35a79c',
-      '#59575f',
-      ' #83d0c9',
-      '#451e3e',
-      ' #009688',
-      ' #651e3e',
-      '#055742',
-      ' #9a0ea7',
-      ' #3da4ab',
-      ' #f6cd61',
-      ' #fe8a71',
-      '#2a4d69 ',
-      ' #4b86b4',
-      ' #54b2a9',
-      ' #adcbe3',
-      ' #65c3ba',
-      ' #e7eff6',
-      ' #63ace5',
-      ' #851e3e',
-    ],
+    list: [pic, pic_1, pic_2, pic_3, pic, pic_1, pic_2, pic_3],
     totalLength: 8,
     leafList: [],
     featuredList: {
       activeIndex: 5,
-      songsList: [
-        '#051e3e',
-        ' #35a79c',
-        '#59575f',
-        ' #83d0c9',
-        '#451e3e',
-        ' #009688',
-        ' #651e3e',
-        // '#055742',
-        // ' #9a0ea7',
-        // ' #3da4ab',
-        // ' #f6cd61',
-        // ' #fe8a71',
-      ],
+      songsList: [pic, pic_1, pic_2, pic_3, pic, pic_1, pic_2, pic_3],
     },
   };
 
@@ -80,7 +50,7 @@ const Content: React.FC = () => {
 
         updatedState.leafList.push({
           zIndex: zIndex,
-          bgColor: updatedState.list[i],
+          img: updatedState.list[i],
           translateValue: translateValues.center.transform,
           width: translateValues.center.width,
           height: translateValues.center.height,
@@ -110,7 +80,7 @@ const Content: React.FC = () => {
 
         updatedState.leafList.unshift({
           zIndex: zIndex,
-          bgColor: updatedState.list[listTotalLength - 1 - i],
+          img: updatedState.list[listTotalLength - 1 - i],
           translateValue: translateValue,
           width: width,
           height: height,
@@ -144,7 +114,7 @@ const Content: React.FC = () => {
 
         updatedState.leafList.push({
           zIndex: zIndex,
-          bgColor: updatedState.list[i],
+          img: updatedState.list[i],
           translateValue: translateValue,
           width: width,
           height: height,
@@ -301,11 +271,12 @@ const Content: React.FC = () => {
             <div
               className="slide-leaf"
               style={{
-                backgroundColor: `${x.bgColor}`,
                 transform: `${x.translateValue}`,
                 zIndex: Number(x.zIndex),
                 width: x.width,
                 height: x.height,
+                backgroundImage: `url(${x.img})`,
+                backgroundSize: 'cover',
               }}
               ref={(divInfo) => {
                 contentRef.current.elementList[index] =
@@ -324,7 +295,13 @@ const Content: React.FC = () => {
           {contentState.featuredList.songsList.map((song, index) => {
             return (
               <div className="card-outer" key={index}>
-                <div className="img"></div>
+                <div
+                  className="img"
+                  style={{
+                    backgroundImage: `url(${song})`,
+                    backgroundSize: 'cover',
+                  }}
+                ></div>
                 <div className="details">
                   <div className="head">Lean On</div>
                   <div className="sub-head">Ed Sheeran</div>

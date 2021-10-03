@@ -8,7 +8,7 @@ export interface ContentState {
   totalLength: number;
   leafList: {
     zIndex: string;
-    bgColor: string;
+    img: string;
     translateValue: string;
     width: string;
     height: string;
