@@ -8,6 +8,9 @@ import pic from '../../Assets/Images/test-pic.jpg';
 import pic_1 from '../../Assets/Images/test-pic-1.jpg';
 import pic_2 from '../../Assets/Images/test-pic-2.jpg';
 import pic_3 from '../../Assets/Images/test-pic-3.jpg';
+import SVGIcon from '../../SharedComponents/SVGIcon/SVGIcon';
+import LeftSliderIcon from '../../Assets/Icons/ic_chevron_left.svg';
+import RightSliderIcon from '../../Assets/Icons/ic_chevron_right.svg';
 
 const Content: React.FC = () => {
   const initialState: ContentState = {
@@ -265,30 +268,46 @@ const Content: React.FC = () => {
 
   return (
     <div className="content-wrapper">
-      <div className="main-slider">
-        {contentState.leafList.map((x, index) => {
-          return (
-            <div
-              className="slide-leaf"
-              style={{
-                transform: `${x.translateValue}`,
-                zIndex: Number(x.zIndex),
-                width: x.width,
-                height: x.height,
-                backgroundImage: `url(${x.img})`,
-                backgroundSize: 'cover',
-              }}
-              ref={(divInfo) => {
-                contentRef.current.elementList[index] =
-                  divInfo as HTMLDivElement;
-              }}
-              key={index}
-            ></div>
-          );
-        })}
+      <div className="slider">
+        <div className="main-slider">
+          {contentState.leafList.map((x, index) => {
+            return (
+              <div
+                className="slide-leaf"
+                style={{
+                  transform: `${x.translateValue}`,
+                  zIndex: Number(x.zIndex),
+                  width: x.width,
+                  height: x.height,
+                  backgroundImage: `url(${x.img})`,
+                  backgroundSize: 'cover',
+                }}
+                ref={(divInfo) => {
+                  contentRef.current.elementList[index] =
+                    divInfo as HTMLDivElement;
+                }}
+                key={index}
+              ></div>
+            );
+          })}
+        </div>
+        <div className="slider-controls">
+          <div
+            role="presentation"
+            className="slider-btn"
+            onClick={() => slidePhoto(SLIDER_DIRECTION.LEFT)}
+          >
+            <SVGIcon svgPath={LeftSliderIcon} altName={'LeftSlider'} />
+          </div>
+          <div
+            role="presentation"
+            className="slider-btn"
+            onClick={() => slidePhoto(SLIDER_DIRECTION.RIGHT)}
+          >
+            <SVGIcon svgPath={RightSliderIcon} altName={'RightSlider'} />
+          </div>
+        </div>
       </div>
-      <button onClick={() => slidePhoto(SLIDER_DIRECTION.LEFT)}>Left</button>
-      <button onClick={() => slidePhoto(SLIDER_DIRECTION.RIGHT)}>Right</button>
       <div className="featured-list">
         <div className="heading">Weekly Top Tracks</div>
         <div className="list-wrapper">
