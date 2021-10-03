@@ -1,21 +1,40 @@
+@import '../../Styles/Variable.scss';
+
 .browse {
   width: 100%;
+  padding: 0px 1.5rem;
 
   & .head-section {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    color: #fff;
+    margin: 10px 0px;
+
+    & .slider-controls {
+      display: flex;
+
+      & .slider-btn {
+        background-color: $theme-color;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin-left: 5px;
+      }
+    }
 
     & .text {
-      font-size: 25px;
-      font-weight: 500;
+      @extend %font24b;
+      color: $white-color;
     }
   }
 
   & .slider-wrapper {
     width: 100%;
-    height: 14rem;
+    height: 18rem;
     position: relative;
     overflow-x: hidden;
 
@@ -28,31 +47,42 @@
 
       & .card {
         width: 13rem;
-        height: 14rem;
-        color: white;
-        margin: 0px 10px;
+        height: 18rem;
+        margin: 0px 20px;
+        border-radius: 10px;
+        transition: all 0.4s ease-out;
+
+        &:hover {
+          background-color: #242540;
+
+          & .lower-part {
+            & .play-pause-btn {
+              display: flex;
+            }
+          }
+        }
 
         & .img {
-          background-color: red;
           width: 100%;
-          height: 72%;
+          height: 68%;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
         }
 
         & .lower-part {
           width: 100%;
-          height: 28%;
+          height: 32%;
           padding: 10px 0px 0px 20px;
           position: relative;
 
           & .head-text {
-            font-size: 16px;
-            font-weight: 500;
+            @extend %font16b;
+            color: $white-color;
           }
 
           & .songs-length {
-            font-size: 14px;
-            font-weight: 500;
-            color: grey;
+            @extend %font14b;
+            color: $grey-color;
             margin-top: 10px;
           }
 
@@ -60,98 +90,196 @@
             width: 3rem;
             height: 3rem;
             border-radius: 50%;
-            background-color: orange;
+            background-color: $theme-color;
             position: absolute;
             top: -27px;
-            right: 40px;
+            right: 15px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding-left: 6px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  & .second-section {
+    display: flex;
+    justify-content: space-between;
+
+    & .songs-section {
+      width: 50%;
+
+      & .top-songs-section {
+        display: flex;
+        align-items: center;
+        margin: 3rem 0px 0px 0px;
+
+        & .top-songs {
+          font-size: 24px;
+          @extend %font24m;
+          color: $white-color;
+          margin-right: 2rem;
+        }
+
+        & .text {
+          @extend %font16m;
+          margin-left: 15px;
+          cursor: pointer;
+          padding-bottom: 3px;
+          color: $white-color;
+        }
+        & .active {
+          border-bottom: solid 2px $white-color;
+        }
+      }
+
+      & .songs-list {
+        color: $white-color;
+        width: 100%;
+        margin-top: 25px;
+
+        & .head {
+          border-bottom: 1px solid $grey-color;
+          padding-bottom: 15px;
+
+          & .hash,
+          .artist-track,
+          .album,
+          .time,
+          .plays {
+            @extend %font16b;
+            color: $white-color;
+          }
+        }
+
+        & .song-details {
+          padding: 16px 5px;
+          border-radius: 5px;
+          cursor: pointer;
+
+          & .artist-track {
+            & .details {
+              & .song-name {
+                @extend %font16b;
+                color: $white-color;
+              }
+
+              & .song-artist {
+                @extend %font14b;
+                color: $grey-color;
+                margin-top: 8px;
+              }
+            }
+          }
+
+          & .album,
+          .time,
+          .plays {
+            @extend %font16r;
+            color: $grey-color;
+          }
+
+          &:hover {
+            background-color: $hover-bg-color;
+          }
+        }
+
+        & .head,
+        & .song-details {
+          display: flex;
+          width: 100%;
+          justify-content: space-evenly;
+
+          & .song-btn {
+            width: 5%;
+            display: flex;
+            align-items: center;
+          }
+
+          & .hash {
+            width: 5%;
+            display: flex;
+            align-items: center;
+          }
+
+          & .artist-track {
+            width: 25%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+            & .img {
+              width: 2.5rem;
+              height: 2.5rem;
+              border-radius: 50%;
+            }
+          }
+
+          & .album {
+            width: 15%;
+            display: flex;
+            align-items: center;
+          }
+
+          & .time {
+            width: 5%;
+            display: flex;
+            align-items: center;
+          }
+
+          & .plays {
+            width: 10%;
+            display: flex;
+            align-items: center;
+          }
+
+          & .add {
+            width: 8%;
+            display: flex;
+            align-items: center;
           }
         }
       }
     }
   }
 
-  & .top-songs-section {
-    color: white;
-    display: flex;
-    align-items: center;
+  & .video-section {
+    width: 45%;
+    margin: 2rem 0px 0px 0px;
+    padding: 0px 1rem;
 
-    & .top-songs {
-      font-size: 24px;
-      font-weight: 500;
-    }
-
-    & .text {
-      font-size: 16px;
-      font-weight: 500;
-      margin-left: 15px;
-      cursor: pointer;
-      padding-bottom: 3px;
-    }
-    & .active {
-      border-bottom: solid 2px white;
-    }
-  }
-
-  & .songs-list {
-    color: white;
-    width: 50%;
-    margin-top: 25px;
-
-    & .head,
-    & .song-details {
-      display: flex;
+    & .head-section {
       width: 100%;
-      justify-content: space-evenly;
+      display: flex;
+      justify-content: space-between;
 
-      & .song-btn {
-        width: 5%;
-        display: flex;
-        align-items: center;
+      & .heading {
+        @extend %font24b;
+        color: $white-color;
       }
 
-      & .hash {
-        width: 5%;
+      & .video-controls {
         display: flex;
-        align-items: center;
-      }
 
-      & .artist-track {
-        width: 25%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-
-        & .img {
-          width: 2.5rem;
-          height: 2.5rem;
+        & .slider-btn {
+          background-color: $theme-color;
+          width: 2rem;
+          height: 2rem;
           border-radius: 50%;
-          background-color: red;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          margin-left: 5px;
         }
       }
-
-      & .album {
-        width: 15%;
-        display: flex;
-        align-items: center;
-      }
-
-      & .time {
-        width: 5%;
-        display: flex;
-        align-items: center;
-      }
-
-      & .plays {
-        width: 10%;
-        display: flex;
-        align-items: center;
-      }
-
-      & .add {
-        width: 8%;
-        display: flex;
-        align-items: center;
-      }
+    }
+    & .video-player {
+      width: 100%;
+      height: 100%;
+      background-color: red;
     }
   }
 }
