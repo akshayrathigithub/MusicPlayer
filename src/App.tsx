@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './Components/NavBar/NavBar';
 import Browse from './Components/Browse/Browse';
 import { PAGE_ROUTES } from './Constants/PageRoute';
+import { Artists } from './Components/Artists/Artists';
+import { Albums } from './Components/Albums/Albums';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -27,6 +29,12 @@ const App: React.FC = () => {
             </Route>
             <Route exact path={PAGE_ROUTES.BROWSE}>
               <Browse />
+            </Route>
+            <Route exact path={PAGE_ROUTES.ARTISTS}>
+              <Artists />
+            </Route>
+            <Route exact path={PAGE_ROUTES.ALBUMS}>
+              <Albums />
             </Route>
           </Switch>
         </div>
