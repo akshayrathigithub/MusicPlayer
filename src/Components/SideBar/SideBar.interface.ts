@@ -61,13 +61,13 @@ export const MID_SIDEBAR_ITEMS: SideBarItemType[] = [
     altName: SIDEBAR_ITEMS.ARTISTS,
     src: ic_artist,
     text: 'ARTISTS',
-    route: PAGE_ROUTES.HOME,
+    route: PAGE_ROUTES.ARTISTS,
   },
   {
     altName: SIDEBAR_ITEMS.ALBUMS,
     src: ic_album,
     text: 'ALBUMS',
-    route: PAGE_ROUTES.HOME,
+    route: PAGE_ROUTES.ALBUMS,
   },
 ];
 
