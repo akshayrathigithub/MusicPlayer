@@ -1,0 +1,51 @@
+@import '../../Styles/Variable.scss';
+
+.artists {
+  width: 100%;
+  padding: 0px 1rem;
+  & .top-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .info {
+      & .top-artists {
+        @extend %font24m;
+        color: $white-color;
+      }
+
+      & .total-artists {
+        @extend %font14r;
+        color: $grey-color;
+        margin-top: 0.8rem;
+      }
+    }
+
+    & .end-section {
+      display: flex;
+      & .btn {
+        width: 4rem;
+        height: 2rem;
+        border: solid 1px $white-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      & .all-artists {
+        @extend %font16b;
+        color: $white-color;
+      }
+
+      & .controls {
+        display: flex;
+
+        & .control-btn {
+          width: 2rem;
+        }
+      }
+    }
+  }
+}
