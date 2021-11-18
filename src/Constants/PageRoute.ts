@@ -3,4 +3,6 @@ export const enum PAGE_ROUTES {
   BROWSE = '/browse',
   RADIO = '/radio',
   RECENTLY_PLAYED = '/recently-played',
+  ARTISTS = '/artists',
+  ALBUMS = '/albums',
 }
